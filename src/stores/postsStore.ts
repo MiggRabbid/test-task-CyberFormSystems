@@ -27,8 +27,6 @@ export const usePostsStore = defineStore('posts', {
     paginatedPosts(state): TypePosts {
       const postsToPaginate = this.filteredPosts
       const start = (state.currentPage - 1) * this.postsPerPage
-      console.log('paginatedPosts - ', start, start + this.postsPerPage)
-      console.log('paginatedPosts - ', postsToPaginate.slice(start, start + this.postsPerPage))
       return postsToPaginate.slice(start, start + this.postsPerPage)
     },
     totalPages(state): number {

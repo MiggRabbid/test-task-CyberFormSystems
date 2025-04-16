@@ -2,13 +2,11 @@
   <div
     class="w-full flex justify-end items-center p-4 grow-0 bg-white shrink-0 rounded-t-lg shadow-lg"
   >
-    <n-pagination
+    <Pagination
       v-model:page="page"
       v-model:page-size="pageSize"
-      :page-count="postsStore.totalPages"
-      show-size-picker
+      :page-count="totalPages"
       :page-sizes="pageSizes"
-      page-slot-align="right"
     />
   </div>
 </template>
@@ -16,6 +14,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { usePostsStore } from '@/stores/postsStore'
+import Pagination from '@/shared/components/Pagination/AppPagination.vue'
+import { pageSizes } from '@/shared/config/pagination.config'
 
 const postsStore = usePostsStore()
 
@@ -29,14 +29,5 @@ const pageSize = computed<number>({
   set: (val) => postsStore.setPostsPerPage(val as 10 | 15 | 20),
 })
 
-// Опции в «селекторе размера страницы»
-const pageSizes = [
-  { label: '10 постов', value: 10 },
-  { label: '15 постов', value: 15 },
-  { label: '20 постов', value: 20 },
-]
+const totalPages = computed<number>(() => postsStore.totalPages)
 </script>
-
-<style scoped>
-/* При необходимости добавьте свои Tailwind-утилиты или локальные правки */
-</style>
