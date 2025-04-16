@@ -1,14 +1,11 @@
 <template>
-  <div><n-text type="primary"> MainPage </n-text></div>
+  <main class="h-full w-full overflow-y-auto">
+    <PostList />
+  </main>
 </template>
 
 <script setup lang="ts">
-import { api } from '@/api/api'
-
-api
-  .getAllPosts()
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error))
+import PostList from '@/features/posts/PostList.vue'
 </script>
 
 <style scoped></style>

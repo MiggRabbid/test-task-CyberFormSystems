@@ -26,8 +26,13 @@ export const usePostsStore = defineStore('posts', {
     },
     paginatedPosts(state): TypePosts {
       const postsToPaginate = this.filteredPosts
-      const start = (state.currentPage - 1) * 10
-      return postsToPaginate.slice(start, start + 10)
+      const start = (state.currentPage - 1) * this.postsPerPage
+      console.log('paginatedPosts - ', start, start + this.postsPerPage)
+      console.log('paginatedPosts - ', postsToPaginate.slice(start, start + this.postsPerPage))
+      return postsToPaginate.slice(start, start + this.postsPerPage)
+    },
+    totalPages(state): number {
+      return Math.ceil(this.filteredPosts.length / state.postsPerPage)
     },
   },
   actions: {
@@ -59,6 +64,11 @@ export const usePostsStore = defineStore('posts', {
     },
     setCurrentPage(page: number) {
       this.currentPage = page
+    },
+    setPostsPerPage(newPostsPerPage: 10 | 15 | 20) {
+      this.postsPerPage = newPostsPerPage
+      this.currentPage = 1
+      console.log('paginatedPosts - ', newPostsPerPage)
     },
     clearError() {
       this.error = null
