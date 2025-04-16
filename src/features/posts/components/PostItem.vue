@@ -1,7 +1,7 @@
 <template>
   <n-card
     class="cursor-pointer hover:shadow-lg transition-shadow duration-300 rounded-lg!"
-    @click="handleClick"
+    @click="navigate"
   >
     <div class="flex gap-4">
       <n-tag :bordered="false" round>{{ post.id }}</n-tag>
@@ -13,17 +13,15 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-import { NCard, NText } from 'naive-ui'
+import { defineProps } from 'vue'
+import { useRouter } from 'vue-router'
+import { NTag, NCard, NText } from 'naive-ui'
 import type { IPost } from '@/types/post'
 
+const router = useRouter()
 const props = defineProps<{ post: IPost }>()
 
-const emit = defineEmits<{
-  (event: 'select', postId: number): void
-}>()
-
-function handleClick(): void {
-  emit('select', props.post.id)
+function navigate() {
+  router.push({ name: 'PostDetails', params: { id: props.post.id } })
 }
 </script>

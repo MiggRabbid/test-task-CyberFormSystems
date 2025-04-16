@@ -1,17 +1,16 @@
 <template>
-  <header
-    class="w-full flex gap-4 justify-between items-center p-4 grow-0 bg-white shrink-0 rounded-b-lg shadow-sm"
-  >
+  <HeaderContainer>
     <n-text tag="h1" class="w-100 text-2xl font-bold! leading-none uppercase">Список постов</n-text>
     <SearchInput v-model:modelValue="query" placeholder="Поиск постов..." @clear="onClear" />
-  </header>
+  </HeaderContainer>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { NText } from 'naive-ui'
-import { usePostsStore } from '@/stores/postsStore'
+import { usePostsStore } from '@/stores'
 import SearchInput from '@/shared/components/inputs/SearchInput.vue'
+import HeaderContainer from '@/shared/layouts/HeaderContainer.vue'
 
 const postsStore = usePostsStore()
 

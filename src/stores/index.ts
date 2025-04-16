@@ -1,18 +1,13 @@
 import { defineStore } from 'pinia'
 import { api } from '@/api/api'
-import type { IPostsState } from './types/postsStore'
+import type { IPostsState } from './types/store'
 import type { IPost, TypePosts } from '@/types/post'
+import { initState } from './config/store.config'
+import type { TypeComments } from '@/types/comments'
+import type { IUser } from '@/types/user'
 
 export const usePostsStore = defineStore('posts', {
-  state: (): IPostsState => ({
-    posts: [],
-    isLoading: false,
-    error: null,
-    currentPage: 1,
-    postsPerPage: 10,
-    searchQuery: '',
-    selectedPost: null,
-  }),
+  state: (): IPostsState => ({ ...initState }),
   getters: {
     filteredPosts(state): TypePosts {
       if (state.searchQuery.trim() === '') {
@@ -49,9 +44,34 @@ export const usePostsStore = defineStore('posts', {
       this.isLoading = true
       try {
         const data: IPost = await api.getPostById({ params: { postId } })
+        await this.fetchCommentsByPost(postId)
+        await this.fetchUserById(data.userId)
         this.selectedPost = data
       } catch (error: unknown) {
         this.error = error instanceof Error ? error.message : 'Ошибка при загрузке поста'
+      } finally {
+        this.isLoading = false
+      }
+    },
+    async fetchUserById(userId: number) {
+      this.isLoading = true
+      try {
+        const data: IUser = await api.getUserById({ params: { userId } })
+        this.user = data
+      } catch (error: unknown) {
+        this.error =
+          error instanceof Error ? error.message : 'Ошибка при загрузке данных пользователя'
+      } finally {
+        this.isLoading = false
+      }
+    },
+    async fetchCommentsByPost(postId: number) {
+      this.isLoading = true
+      try {
+        const data: TypeComments = await api.getCommentsByPost({ params: { postId } })
+        this.comments = data
+      } catch (error: unknown) {
+        this.error = error instanceof Error ? error.message : 'Ошибка при загрузке комментариев'
       } finally {
         this.isLoading = false
       }
@@ -63,13 +83,18 @@ export const usePostsStore = defineStore('posts', {
     setCurrentPage(page: number) {
       this.currentPage = page
     },
+
     setPostsPerPage(newPostsPerPage: 10 | 15 | 20) {
       this.postsPerPage = newPostsPerPage
       this.currentPage = 1
-      console.log('paginatedPosts - ', newPostsPerPage)
     },
     clearError() {
-      this.error = null
+      this.error = initState.error
     },
+    clearUserAndComments() {
+      this.user = initState.user
+      this.comments = initState.comments
+    },
+    clearComments() {},
   },
 })

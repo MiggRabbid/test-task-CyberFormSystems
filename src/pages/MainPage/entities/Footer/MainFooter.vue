@@ -1,21 +1,22 @@
 <template>
-  <div
-    class="w-full flex justify-end items-center p-4 grow-0 bg-white shrink-0 rounded-t-lg shadow-lg"
-  >
-    <Pagination
-      v-model:page="page"
-      v-model:page-size="pageSize"
-      :page-count="totalPages"
-      :page-sizes="pageSizes"
-    />
-  </div>
+  <FooterContainer>
+    <n-space justify="end">
+      <Pagination
+        v-model:page="page"
+        v-model:page-size="pageSize"
+        :page-count="totalPages"
+        :page-sizes="pageSizes"
+      />
+    </n-space>
+  </FooterContainer>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { usePostsStore } from '@/stores/postsStore'
+import { usePostsStore } from '@/stores'
 import Pagination from '@/shared/components/Pagination/AppPagination.vue'
 import { pageSizes } from '@/shared/config/pagination.config'
+import FooterContainer from '@/shared/layouts/FooterContainer.vue'
 
 const postsStore = usePostsStore()
 

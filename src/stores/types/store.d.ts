@@ -4,6 +4,8 @@ export type TypePostsPerPage = 10 | 15 | 20
 
 export interface IPostsState {
   posts: TypePosts
+  user: IUser | null
+  comments: TypeComments
   isLoading: boolean
   error: string | null
   currentPage: number

@@ -4,4 +4,4 @@ export interface IPost {
   title: string
   body: string
 }
-export type TypePosts = post[]
+export type TypePosts = IPost[]

@@ -1,8 +1,8 @@
 <template>
   <MainHeader />
-  <main class="h-full w-full overflow-y-auto">
+  <MainContainer>
     <PostList />
-  </main>
+  </MainContainer>
   <MainFooter />
 </template>
 
@@ -10,4 +10,5 @@
 import MainHeader from './entities/Header/MainHeader.vue'
 import PostList from '@/features/posts/PostList.vue'
 import MainFooter from './entities/Footer/MainFooter.vue'
+import MainContainer from '@/shared/layouts/MainContainer.vue'
 </script>

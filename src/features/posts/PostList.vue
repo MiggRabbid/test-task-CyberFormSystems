@@ -1,15 +1,10 @@
 <template>
   <div class="p-4 w-full h-full flex justify-center items-center">
-    <n-spin v-if="postsStore.isLoading" class="flex justify-center items-center h-64" />
+    <AppLoader v-if="isLoading" />
 
-    <div v-else class="flex w-full h-full justify-center items-center">
+    <div v-if="!isLoading" class="flex w-full h-full justify-center items-center">
       <n-space v-if="postsStore.paginatedPosts.length" vertical size="large">
-        <PostItem
-          v-for="post in postsStore.paginatedPosts"
-          :key="post.id"
-          :post="post"
-          @select="handlePostSelect"
-        />
+        <PostItem v-for="post in postsStore.paginatedPosts" :key="post.id" :post="post" />
       </n-space>
 
       <n-card v-else class="w-full max-w-2xl mx-auto text-center text-gray-600 rounded-lg! py-10">
@@ -20,10 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import { NSpace, NCard, NSpin } from 'naive-ui'
-import { onMounted } from 'vue'
-import { usePostsStore } from '@/stores/postsStore'
+import { NSpace, NCard, NText } from 'naive-ui'
+import { computed, onMounted } from 'vue'
+import { usePostsStore } from '@/stores'
 import PostItem from '@/features/posts/components/PostItem.vue'
+import AppLoader from '@/shared/components/Loader/AppLoader.vue'
 
 const postsStore = usePostsStore()
 
@@ -33,7 +29,5 @@ onMounted(() => {
   }
 })
 
-function handlePostSelect(postId: number): void {
-  postsStore.fetchPostById(postId)
-}
+const isLoading = computed(() => postsStore.isLoading)
 </script>
