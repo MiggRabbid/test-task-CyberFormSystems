@@ -10,7 +10,7 @@
 import { NSpace } from 'naive-ui'
 import { useRouter } from 'vue-router'
 import FooterContainer from '@/shared/layouts/FooterContainer.vue'
-import BackBtn from '@/shared/components/btns/BackBtn.vue'
+import BackBtn from '@/shared/components/BackBtn.vue'
 
 const router = useRouter()
 

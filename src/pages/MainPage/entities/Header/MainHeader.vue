@@ -9,7 +9,7 @@
 import { computed } from 'vue'
 import { NText } from 'naive-ui'
 import { usePostsStore } from '@/stores'
-import SearchInput from '@/shared/components/inputs/SearchInput.vue'
+import SearchInput from '@/shared/components/SearchInput.vue'
 import HeaderContainer from '@/shared/layouts/HeaderContainer.vue'
 
 const postsStore = usePostsStore()

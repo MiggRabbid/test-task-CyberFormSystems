@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { usePostsStore } from '@/stores'
-import Pagination from '@/shared/components/Pagination/AppPagination.vue'
+import Pagination from '@/shared/components/AppPagination.vue'
 import { pageSizes } from '@/shared/config/pagination.config'
 import FooterContainer from '@/shared/layouts/FooterContainer.vue'
 

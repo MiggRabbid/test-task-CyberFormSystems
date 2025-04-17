@@ -18,8 +18,8 @@
 import { NSpace, NCard, NText } from 'naive-ui'
 import { computed, onMounted } from 'vue'
 import { usePostsStore } from '@/stores'
-import PostItem from '@/features/posts/components/PostItem.vue'
-import AppLoader from '@/shared/components/Loader/AppLoader.vue'
+import PostItem from '@/features/PostList/components/PostItem.vue'
+import AppLoader from '@/shared/components/AppLoader.vue'
 
 const postsStore = usePostsStore()
 

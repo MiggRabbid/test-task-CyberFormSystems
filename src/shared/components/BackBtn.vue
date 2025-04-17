@@ -13,6 +13,7 @@
 import { defineProps } from 'vue'
 import { NButton, NIcon } from 'naive-ui'
 import BackIcon from '@/assets/icons/BackIcon.vue'
+
 type Props = {
   btnText: string
   iconPlacement?: 'left' | 'right'

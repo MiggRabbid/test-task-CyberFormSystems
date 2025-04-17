@@ -32,8 +32,8 @@ import { NCard, NText, NDivider } from 'naive-ui'
 import { usePostsStore } from '@/stores'
 import type { IUser } from '@/types/user'
 import type { IPost } from '@/types/post'
-import CommentsList from '@/features/comments/CommentsList.vue'
-import AppLoader from '@/shared/components/Loader/AppLoader.vue'
+import CommentsList from '@/features/CommentsList/CommentsList.vue'
+import AppLoader from '@/shared/components/AppLoader.vue'
 
 const postsStore = usePostsStore()
 const post = computed((): IPost | null => postsStore.selectedPost)

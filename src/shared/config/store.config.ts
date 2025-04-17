@@ -1,4 +1,4 @@
-import type { IPostsState } from '../types/store'
+import type { IPostsState } from '@/stores/types/store'
 
 export const initState: IPostsState = {
   posts: [],

@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { api } from '@/api/api'
-import type { IPostsState } from './types/store'
+import { initState } from '@/shared/config/store.config'
 import type { IPost, TypePosts } from '@/types/post'
-import { initState } from './config/store.config'
+import type { IPostsState } from './types/store'
 import type { TypeComments } from '@/types/comments'
 import type { IUser } from '@/types/user'
 

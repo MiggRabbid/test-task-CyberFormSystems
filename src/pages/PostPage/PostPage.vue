@@ -8,12 +8,12 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onBeforeMount } from 'vue'
+import { useRoute } from 'vue-router'
 import { usePostsStore } from '@/stores'
 import PostHeader from './entities/Header/PostHeader.vue'
-import MainContainer from '@/shared/layouts/MainContainer.vue'
+import OpenPost from '@/entities/OpenPost.vue'
 import PostFooter from './entities/Footer/PostFooter.vue'
-import { useRoute } from 'vue-router'
-import OpenPost from '@/entities/Post/OpenPost.vue'
+import MainContainer from '@/shared/layouts/MainContainer.vue'
 
 const route = useRoute()
 const postsStore = usePostsStore()
