@@ -1,9 +1,0 @@
-@import './base.css';
-@import 'tailwindcss';
-
-#app {
-  @apply grow flex h-full flex-col justify-between items-center max-w-7xl gap-5;
-  margin: 0 auto;
-  padding: 0;
-  font-weight: normal;
-}
