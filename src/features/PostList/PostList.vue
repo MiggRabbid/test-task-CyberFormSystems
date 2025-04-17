@@ -3,7 +3,7 @@
     <AppLoader v-if="isLoading" />
 
     <div v-if="!isLoading" class="flex w-full h-full justify-center items-center">
-      <n-space v-if="postsStore.paginatedPosts.length" vertical size="large">
+      <n-space v-if="postsStore.paginatedPosts.length" vertical size="large" class="h-full! w-full">
         <PostItem v-for="post in postsStore.paginatedPosts" :key="post.id" :post="post" />
       </n-space>
 
