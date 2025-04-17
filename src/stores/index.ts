@@ -44,8 +44,8 @@ export const usePostsStore = defineStore('posts', {
       this.isLoading = true
       try {
         const data: IPost = await api.getPostById({ params: { postId } })
-        await this.fetchCommentsByPost(postId)
         await this.fetchUserById(data.userId)
+        await this.fetchCommentsByPost(postId)
         this.selectedPost = data
       } catch (error: unknown) {
         this.error = error instanceof Error ? error.message : 'Ошибка при загрузке поста'
