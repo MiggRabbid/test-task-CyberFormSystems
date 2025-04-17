@@ -1,6 +1,6 @@
 <template>
   <FooterContainer>
-    <n-space justify="end">
+    <n-space justify="end" class="w-full!">
       <Pagination
         v-model:page="page"
         v-model:page-size="pageSize"
